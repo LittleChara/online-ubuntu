@@ -1,0 +1,387 @@
+#!/bin/bash
+#made by Jesse
+cd $(dirname $0)
+
+#dev on line 236
+
+function infomation() {
+    clear
+    echo "1.See more infomation about heroku"
+    echo "2.See more infomation about brew"
+    echo "3.See more infomation about docker"
+    read -n1 -p "Use which way[1/2/3]?" answer_infoin
+    case $answer_infoin in
+        1)
+            clear
+            echo 'You will be redirected to https://heroku.com'
+            open https://heroku.com -a Safari;;
+        2)
+            clear
+            echo 'You will be redirected to https://brew.sh'
+            open https://brew.sh -a Safari;;
+        3)
+            clear
+            echo 'You will be redirected to https://docker.com'
+            open https://docker.com -a Safari;;
+        *)
+            clear ;;
+            #return
+        esac
+}
+
+if  command -v heroku > /dev/null;then
+    echo
+else
+    clear
+    echo "You didn't install heroku yet, did you register heroku and download CLI(command line tool)?"
+    echo
+    read -n1 -p "Did you register[Y/N]?" answer_sign
+    echo
+    case $answer_sign in
+        Y | y)
+            clear
+            read -n1 -p "Do you want to Download CLI?[Y/N] " answer_cli
+                case $answer_cli in
+                    Y | y)
+                        if  command -v brew > /dev/null;then
+                            clear
+                            echo "found brew on this mac"
+                            echo "will use brew to install heroku"
+                            echo "#install heroku"
+                            brew tap heroku/brew && brew install heroku
+                        else
+                            clear
+                            echo "You didn't install brew yet, do you want to install heroku CLI use brew or normal way?"
+                            echo
+                            echo
+                            echo "1.Use brew (Brew is a package manger on mac, need developer command line, need long time to install)"
+                            echo '2.Use normal sh way     (/bin/bash -c "$(curl -fsSL https://cli-assets.heroku.com/install.sh)"'
+                            echo '3.See more information'
+                            echo
+                            read -n1 -p "Use which way[1/2/3]?" answer_incli
+                            echo
+                            case $answer_incli in
+                                1 | o)
+                                    clear
+                                    echo "You need install brew first"
+                                    echo "Go to https://brew.sh/ to see more information"
+                                    echo
+                                    echo 'Do you want to install now?    (/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh))"'
+                                    echo
+                                    echo
+                                    echo '1. install now'
+                                    echo '2. stop this script'
+                                    echo '3. go to https://brew.sh/ to see more information'
+                                    read -n1 -p "Use which way[1/2/3]?" answer_inbrew
+                                    echo
+                                    case $answer_inbrew in
+                                        1)
+											clear
+                                            echo 'Mabey it will ask your user password\n'
+                                            echo "When you type password, you won't see it"
+                                            sleep 1
+                                            echo "#install brew"
+                                            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)";;
+                                            
+                                        2)
+                                            echo "If you want continue, you must install heroku, docker, and optional install brew";;
+                                            #$(dirname $0)/${0##*/}
+
+                                        3)
+											clear
+											echo "You will be redirected to https://brew.sh/";
+											open https://brew.sh/ -a Safari;;
+											#$(dirname $0)/${0##*/}
+                                    	*)
+											echo ;;
+                        					#return
+                        			esac;;
+                        		2)
+									clear
+									echo "This script will install heroku CLI"
+									echo 'Mabey it will ask your user password'
+                                    echo "When you type password, you won't see it"
+                                    sleep 1
+                                    echo "#install heroku"
+                                    /bin/bash -c "$(curl -fsSL https://cli-assets.heroku.com/install.sh)";;
+                                3)
+									infomation;;
+                                *)
+                                    clear
+                                    #return
+                            esac
+                        fi;;
+
+
+                    N | n)
+                        echo 
+                        echo "You can see more information about heroku on heroku.com";;
+                        #close window, now use kill -3 $$
+                    *)
+                        #return
+                esac;;
+        N | n)
+            read -n1 -p "Do you want to register now[Y/N]?" answer_register;
+                case $answer_register in
+                    Y | y)
+                        echo 
+                        echo "You will be redirected to https://signup.heroku.com/"
+                        open https://signup.heroku.com/ -a Safari
+                        sleep 10
+                        clear
+                        read -n1 -p "Do you want to Download CLI?[Y/N] " answer_cli
+                        case $answer_cli in
+                            Y | y)
+                                if  command -v brew > /dev/null; then
+                                    clear
+                                    echo "found brew on this mac"
+                                    echo "will use brew to install heroku"
+                                    echo "#install heroku"
+                                    brew tap heroku/brew && brew install heroku 
+                                else
+                                    clear
+                                    echo "You didn't install brew yet, do you want to install heroku CLI use brew or normal way?"
+                                    echo
+                                    echo
+                                    echo "1.Use brew (Brew is a package manger on mac, will use brew tap heroku/brew && brew install heroku to install"
+                                    echo '2.Use normal sh way     (/bin/bash -c "$(curl -fsSL https://cli-assets.heroku.com/install.sh)"'
+                                    echo '3.See more information'
+                                    echo
+                                    read -n1 -p "Use which way[1/2/3]?" answer_incli
+                                    echo
+                                    case $answer_incli in
+                                        1 | o)
+                                            clear
+                                            echo "You need install brew first"
+                                            echo "Go to https://brew.sh/ to see more information"
+                                            echo
+                                            echo 'Do you want to install now?    (/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh))"'
+                                            echo
+                                            echo
+                                            echo '1. install now'
+                                            echo '2. stop this script'
+                                            echo '3. go to https://brew.sh/ to see more information'
+                                            read -n1 -p "Use which way[1/2/3]?" answer_inbrew
+                                            echo
+                                            case $answer_inbrew in
+                                                1)
+                                                    clear
+                                                    echo 'Mabey it will ask your user password\n'
+                                                    echo "When you type password, you won't see it"
+                                                    sleep 1
+                                                    echo "#install brew"
+                                                    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)";;
+                                                    #return
+                                                2)
+                                                    echo "If you want continue, you must install heroku, docker, and optional install brew";;
+                                                    #return
+                                                3)
+                                                    clear
+                                                    echo "You will be redirected to https://brew.sh/";
+                                                    open https://brew.sh/ -a Safari;;
+                                                    #return
+                                                *)
+                                                    echo ;;
+                                                    #return
+                                            esac;;
+                                        2)
+                                            clear
+                                            echo "This script will install heroku CLI"
+                                            echo 'Mabey it will ask your user password'
+                                            echo "When you type password, you won't see it"
+                                            sleep 1
+                                            echo "#install heroku"
+                                            /bin/bash -c "$(curl -fsSL https://cli-assets.heroku.com/install.sh)";;
+                                        3)
+                                            infomation;;
+                                        *)
+                                            clear
+                                            #return
+                                    esac
+                                fi;;
+                            N | n)
+                                echo 
+                                echo "You can see more information about heroku on heroku.com";;
+                                #close window, now use kill -3 $$
+                            *)
+                                #return
+                        esac;;
+
+                    N | n)
+                        echo
+                        echo "You can see more information about heroku on heroku.com";;
+                        #close window, now use kill -3 $$
+                    *)
+                        #return
+                esac;;
+        *)
+            #return
+    esac
+fi
+
+if  command -v docker > /dev/null;then
+    echo 
+else
+    clear
+fi
+
+
+if [ "x$1" = "x" ] ;then
+    echo ERROR: You need give a herokuapp name!
+    exit 1
+fi
+
+#Check is it first run
+if [ "$(cat ~/Library/Caches/.tmps/.cas)" != "Yes" ] ;then
+    #First run, make dir to save times upload
+    mkdir ~/Library/Caches/.tmps
+    touch ~/Library/Caches/.tmps/.cas
+    touch ~/Library/Caches/.tmps/.version
+    touch ~/Library/Caches/.tmps/.run1
+    touch ~/Library/Caches/.tmps/.dir
+    touch ~/Library/Caches/.tmps/.pid1
+    #give file basic load.
+    echo Yes > ~/Library/Caches/.tmps/.cas
+    echo v1 > ~/Library/Caches/.tmps/.version
+    #set the basic env
+    version=$(cat ~/Library/Caches/.tmps/.version)
+    v=$(cat ~/Library/Caches/.tmps/.version | tr -cd "[0-9]")
+    r=Yes
+    clear
+fi
+
+function reset() {
+    rm -rf $(dirname $0)/web/etc
+	    echo "FROM $2
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN \\
+     sudo apt-get install -y --no-install-recommends \\
+        sudo \\
+        supervisor \\
+        tightvncserver \\
+        expect \\
+        git
+
+
+RUN sudo adduser $1 && \\
+    sudo usermod -a -G sudo $1
+
+
+
+COPY app /app
+RUN sudo mkdir -p /root/.vnc
+ADD xstartup /root/.vnc/xstartup
+ADD vnc.conf /etc/vnc.conf
+
+
+WORKDIR /root
+
+USER $1
+
+CMD [\"/app/begin.sh\"]" > $(dirname $0)/web/Dockerfile
+echo "#\!/usr/bin/expect -f
+
+set timeout -1
+spawn vncpasswd
+match_max 100000
+expect -exact \"Using password file /root/.vnc/passwd\\\r
+Password: \"
+send -- \"$3\\\r\"
+expect -exact \"\\\r
+Verify:   \"
+send -- \"$3\\\r\"
+expect -exact \"\\\r
+Would you like to enter a view-only password (y/n)? \"
+send -- \"n\\\r\" 
+expect eof
+" > $(dirname $0)/web/app/start-vnc-expect-script.sh
+
+}
+
+function setup() {
+    cd web
+    version=$(cat ~/Library/Caches/.tmps/.version)
+    v=$(cat ~/Library/Caches/.tmps/.version | tr -cd "[0-9]")
+    echo v$(($v+1)) > ~/Library/Caches/.tmps/.version
+    heroku container:login
+}
+
+function push() {
+    echo v$(($v+1)) > ~/Library/Caches/.tmps/.version
+    heroku container:push web -a=$1
+    heroku container:release web -a=$1
+}
+
+function getroot() {
+    docker rm $(docker ps -a --filter ancestor=registry.heroku.com/$1/web --filter 'exited=0' -q)
+    heroku container:run web echo -a=$1
+    mkdir $(dirname $0)/web/etc
+    cd $(dirname $0)/web/etc
+    docker cp $(docker ps -a --filter ancestor=registry.heroku.com/$1/web --filter 'exited=0' -q):/etc/passwd .
+    docker cp $(docker ps -a --filter ancestor=registry.heroku.com/$1/web --filter 'exited=0' -q):/etc/sudoers .
+    docker cp $(docker ps -a --filter ancestor=registry.heroku.com/$1/web --filter 'exited=0' -q):/etc/group .
+    docker rm $(docker ps -a --filter ancestor=registry.heroku.com/$1/web --filter 'exited=0' -q)
+    cd $(dirname $0)/web
+    echo "$(cat $(dirname $0)/web/etc/passwd | sed 's/1000/501/g')" > $(dirname $0)/web/etc/passwd
+    echo "$(cat $(dirname $0)/web/etc/group | sed 's/1000/501/g')" > $(dirname $0)/web/etc/group
+    chmod 777 $(dirname $0)/web/etc/sudoers
+    echo "$1 ALL=(ALL) NOPASSWD: ALL" >> $(dirname $0)/web/etc/sudoers
+    chmod 444 $(dirname $0)/web/etc/sudoers
+    echo "FROM $2
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN \\
+     sudo apt-get install -y --no-install-recommends \\
+        sudo \\
+        supervisor \\
+        xorg \\
+        tightvncserver \\
+        expect \\
+        git
+
+
+RUN sudo adduser $1 && \\
+    sudo usermod -a -G sudo $1
+
+
+
+COPY app /app
+RUN sudo mkdir -p /root/.vnc
+ADD xstartup /root/.vnc/xstartup
+ADD vnc.conf /etc/vnc.conf
+
+ADD etc/passwd /etc/passwd
+ADD etc/sudoers /etc/sudoers
+ADD etc/group /etc/group
+
+
+WORKDIR /root
+
+USER $1
+
+CMD [\"/app/begin.sh\"]" > $(dirname $0)/web/Dockerfile
+
+}
+
+function openall() {
+    echo $1 > ~/Library/Caches/.tmps/.run1
+    echo $(dirname $0)/web > ~/Library/Caches/.tmps/.dir
+    osascript -e 'tell application "Terminal" to set bounds of front window to {800, 24, 1280, 506}'
+    osascript -e 'tell application "Terminal" to do script "cd $(cat ~/Library/Caches/.tmps/.dir);heroku container:run web bash -a=$(cat ~/Library/Caches/.tmps/.run1)"'
+    osascript -e 'tell application "Terminal" to set bounds of front window to {0, 506, 640, 800}'
+    osascript -e 'tell application "Terminal" to do script "heroku logs --tail -a=$(cat ~/Library/Caches/.tmps/.run1)"'
+    osascript -e 'tell application "Terminal" to set bounds of front window to {640, 506, 1280, 800}'
+    open https://$1.herokuapp.com/vnc.html
+    sleep 1
+    osascript -e 'tell application "Safari" to set bounds of front window to {0, 24, 800, 506}'
+}
+
+reset $1 ubuntu:20.04
+setup
+push $1
+getroot $1 ubuntu:20.04
+push $1
+openall $1
