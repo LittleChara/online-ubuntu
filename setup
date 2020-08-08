@@ -2,8 +2,8 @@
 #made by Jesse
 cd $(dirname $0)
 
-#dev on line 236
-
+#dev on line 387
+clear
 function infomation() {
     clear
     echo "1.See more infomation about heroku"
@@ -14,18 +14,21 @@ function infomation() {
         1)
             clear
             echo 'You will be redirected to https://heroku.com'
-            open https://heroku.com -a Safari;;
+            open https://heroku.com -a Safari
+            $0;;
         2)
             clear
             echo 'You will be redirected to https://brew.sh'
-            open https://brew.sh -a Safari;;
+            open https://brew.sh -a Safari
+            $0;;
         3)
             clear
             echo 'You will be redirected to https://docker.com'
-            open https://docker.com -a Safari;;
+            open https://docker.com -a Safari
+            $0;;
         *)
-            clear ;;
-            #return
+            clear 
+            $0;;
         esac
 }
 
@@ -49,6 +52,7 @@ else
                             echo "will use brew to install heroku"
                             echo "#install heroku"
                             brew tap heroku/brew && brew install heroku
+                            heroku login --browser=safari
                         else
                             clear
                             echo "You didn't install brew yet, do you want to install heroku CLI use brew or normal way?"
@@ -77,24 +81,27 @@ else
                                     case $answer_inbrew in
                                         1)
 											clear
-                                            echo 'Mabey it will ask your user password\n'
+                                            echo 'Mabey it will ask your user password'
                                             echo "When you type password, you won't see it"
                                             sleep 1
                                             echo "#install brew"
-                                            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)";;
+                                            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+                                            brew tap heroku/brew && brew install heroku
+                                            heroku login --browser=safari
+                                            $0;;
                                             
                                         2)
-                                            echo "If you want continue, you must install heroku, docker, and optional install brew";;
-                                            #$(dirname $0)/${0##*/}
+                                            echo "If you want continue, you must install heroku, docker, and optional install brew"
+                                            exit;;
 
                                         3)
 											clear
 											echo "You will be redirected to https://brew.sh/";
-											open https://brew.sh/ -a Safari;;
-											#$(dirname $0)/${0##*/}
+											open https://brew.sh/ -a Safari
+											$0;;
                                     	*)
-											echo ;;
-                        					#return
+											echo 
+                        					$0;;
                         			esac;;
                         		2)
 									clear
@@ -103,22 +110,24 @@ else
                                     echo "When you type password, you won't see it"
                                     sleep 1
                                     echo "#install heroku"
-                                    /bin/bash -c "$(curl -fsSL https://cli-assets.heroku.com/install.sh)";;
+                                    /bin/bash -c "$(curl -fsSL https://cli-assets.heroku.com/install.sh)"
+                                    heroku login --browser=safari
+                                    $0;;
                                 3)
 									infomation;;
                                 *)
                                     clear
-                                    #return
+                                    $0;;
                             esac
                         fi;;
 
 
                     N | n)
                         echo 
-                        echo "You can see more information about heroku on heroku.com";;
-                        #close window, now use kill -3 $$
+                        echo "You can see more information about heroku on heroku.com"
+                        exit;;
                     *)
-                        #return
+                        $0;;
                 esac;;
         N | n)
             read -n1 -p "Do you want to register now[Y/N]?" answer_register;
@@ -126,6 +135,7 @@ else
                     Y | y)
                         echo 
                         echo "You will be redirected to https://signup.heroku.com/"
+                        echo "Remeber to verify your E-mail!"
                         open https://signup.heroku.com/ -a Safari
                         sleep 10
                         clear
@@ -138,6 +148,7 @@ else
                                     echo "will use brew to install heroku"
                                     echo "#install heroku"
                                     brew tap heroku/brew && brew install heroku 
+                                    $0
                                 else
                                     clear
                                     echo "You didn't install brew yet, do you want to install heroku CLI use brew or normal way?"
@@ -166,23 +177,25 @@ else
                                             case $answer_inbrew in
                                                 1)
                                                     clear
-                                                    echo 'Mabey it will ask your user password\n'
+                                                    echo 'Mabey it will ask your user password'
                                                     echo "When you type password, you won't see it"
                                                     sleep 1
                                                     echo "#install brew"
-                                                    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)";;
-                                                    #return
+                                                    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+                                                    brew tap heroku/brew && brew install heroku
+                                                    heroku login --browser=safari
+                                                    $0;;
                                                 2)
-                                                    echo "If you want continue, you must install heroku, docker, and optional install brew";;
-                                                    #return
+                                                    echo "If you want continue, you must install heroku, docker, and optional install brew"
+                                                    exit;;
                                                 3)
                                                     clear
                                                     echo "You will be redirected to https://brew.sh/";
-                                                    open https://brew.sh/ -a Safari;;
-                                                    #return
+                                                    open https://brew.sh/ -a Safari
+                                                    $0;;
                                                 *)
-                                                    echo ;;
-                                                    #return
+                                                    echo 
+                                                    $0;;
                                             esac;;
                                         2)
                                             clear
@@ -191,38 +204,47 @@ else
                                             echo "When you type password, you won't see it"
                                             sleep 1
                                             echo "#install heroku"
-                                            /bin/bash -c "$(curl -fsSL https://cli-assets.heroku.com/install.sh)";;
+                                            /bin/bash -c "$(curl -fsSL https://cli-assets.heroku.com/install.sh)"
+                                            heroku login --browser=safari
+                                            $0;;
                                         3)
                                             infomation;;
                                         *)
                                             clear
-                                            #return
+                                            $0;;
                                     esac
                                 fi;;
                             N | n)
                                 echo 
-                                echo "You can see more information about heroku on heroku.com";;
-                                #close window, now use kill -3 $$
+                                echo "You can see more information about heroku on heroku.com"
+                                exit;;
                             *)
-                                #return
+                                $0;;
                         esac;;
 
                     N | n)
                         echo
-                        echo "You can see more information about heroku on heroku.com";;
-                        #close window, now use kill -3 $$
+                        echo "You can see more information about heroku on heroku.com"
+                        exit;;
                     *)
-                        #return
+                        $0;;
                 esac;;
         *)
-            #return
+            $0;;
     esac
 fi
 
 if  command -v docker > /dev/null;then
-    echo 
+    echo
 else
-    clear
+    echo "You didn't install docker yet, did you download Docker?"
+    echo 
+    echo
+    echo "1.Download from dcoker use ths script"
+    echo "2.Download from docker website"
+    echo "3.see more infomation"
+
+
 fi
 
 
@@ -240,6 +262,7 @@ if [ "$(cat ~/Library/Caches/.tmps/.cas)" != "Yes" ] ;then
     touch ~/Library/Caches/.tmps/.run1
     touch ~/Library/Caches/.tmps/.dir
     touch ~/Library/Caches/.tmps/.pid1
+    touch ~/Library/Caches/.tmps/.app
     #give file basic load.
     echo Yes > ~/Library/Caches/.tmps/.cas
     echo v1 > ~/Library/Caches/.tmps/.version
@@ -248,6 +271,7 @@ if [ "$(cat ~/Library/Caches/.tmps/.cas)" != "Yes" ] ;then
     v=$(cat ~/Library/Caches/.tmps/.version | tr -cd "[0-9]")
     r=Yes
     clear
+    heroku list --json | grep "name" | grep "," | sed 's/\"//g' | sed 's/\://g' | sed 's/name//g'| sed 's/\ //g' | sed 's/\,//g' > ~/Library/Caches/.tmps/.app
 fi
 
 function reset() {
@@ -256,8 +280,8 @@ function reset() {
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN \\
-     sudo apt-get install -y --no-install-recommends \\
+RUN apt-get update && \\
+    apt-get install -y --no-install-recommends \\
         sudo \\
         supervisor \\
         tightvncserver \\
@@ -265,7 +289,7 @@ RUN \\
         git
 
 
-RUN sudo adduser $1 && \\
+RUN  adduser $1 && \\
     sudo usermod -a -G sudo $1
 
 
@@ -281,7 +305,7 @@ WORKDIR /root
 USER $1
 
 CMD [\"/app/begin.sh\"]" > $(dirname $0)/web/Dockerfile
-echo "#\!/usr/bin/expect -f
+    echo "#\!/usr/bin/expect -f
 
 set timeout -1
 spawn vncpasswd
@@ -301,7 +325,8 @@ expect eof
 }
 
 function setup() {
-    cd web
+    cd $(dirname $0)
+    if [ $(cat ~/Library/Caches/.tmps/.app)]
     version=$(cat ~/Library/Caches/.tmps/.version)
     v=$(cat ~/Library/Caches/.tmps/.version | tr -cd "[0-9]")
     echo v$(($v+1)) > ~/Library/Caches/.tmps/.version
@@ -333,7 +358,7 @@ function getroot() {
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN \\
+RUN  apt-get update && \\
      sudo apt-get install -y --no-install-recommends \\
         sudo \\
         supervisor \\
@@ -379,7 +404,7 @@ function openall() {
     osascript -e 'tell application "Safari" to set bounds of front window to {0, 24, 800, 506}'
 }
 
-reset $1 ubuntu:20.04
+reset $1 ubuntu:20.04 ubuntu
 setup
 push $1
 getroot $1 ubuntu:20.04

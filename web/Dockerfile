@@ -1,9 +1,9 @@
-FROM x11docker/kde-plasma:latest
+FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN \
-     sudo apt-get install -y --no-install-recommends \
+RUN apt -get update && \
+    apt-get install -y --no-install-recommends \
         sudo \
         supervisor \
         tightvncserver \
@@ -13,7 +13,6 @@ RUN \
 
 RUN sudo adduser e-e-s && \
     sudo usermod -a -G sudo e-e-s
-
 
 
 COPY app /app
